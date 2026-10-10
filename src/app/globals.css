@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/*
+  Haat design tokens.
+  Layout: phone-first single column; from md up, a two-part hero (pitch + request box)
+  over an auto-filling grid of work-first listing cards.
+  Boldness lives in one place: the painted rickshaw-panel hero. Everything else stays quiet.
+*/
+:root {
+  --paper: #f4f6f2;        /* page ground, faint green bias */
+  --surface: #ffffff;      /* cards, panels */
+  --ink: #15211b;          /* text */
+  --ink-soft: #4d5c54;     /* secondary text */
+  --line: #dde3dc;         /* hairlines, borders */
+  --bottle: #0d5c40;       /* primary: rickshaw bottle green */
+  --bottle-deep: #08402c;  /* hero ground */
+  --rose: #d92b63;         /* rickshaw pink, used for trims and the Done stamp */
+  --marigold: #f0a500;     /* levels and highlights */
+  --indigo: #2d3b8f;       /* verification */
+  --on-dark: #f7faf8;
+  --focus: #2d3b8f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0d1511;
+    --surface: #15201a;
+    --ink: #e9f0eb;
+    --ink-soft: #a3b3aa;
+    --line: #26342c;
+    --bottle: #3fb886;
+    --bottle-deep: #0a3324;
+    --rose: #ff5a8f;
+    --marigold: #ffc23a;
+    --indigo: #9aa8ff;
+    --on-dark: #f7faf8;
+    --focus: #9aa8ff;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0d1511;
+  --surface: #15201a;
+  --ink: #e9f0eb;
+  --ink-soft: #a3b3aa;
+  --line: #26342c;
+  --bottle: #3fb886;
+  --bottle-deep: #0a3324;
+  --rose: #ff5a8f;
+  --marigold: #ffc23a;
+  --indigo: #9aa8ff;
+  --on-dark: #f7faf8;
+  --focus: #9aa8ff;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-bottle: var(--bottle);
+  --color-bottle-deep: var(--bottle-deep);
+  --color-rose: var(--rose);
+  --color-marigold: var(--marigold);
+  --color-indigo: var(--indigo);
+  --color-on-dark: var(--on-dark);
+
+  --font-display: var(--font-anek), "Arial Narrow", system-ui, sans-serif;
+  --font-body: var(--font-hind), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-brush: var(--font-galada), "Brush Script MT", cursive;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  line-height: 1.05;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+  Rickshaw trim: the painted border strip on the hero panel.
+  Alternating pink and marigold triangles over the hero ground, like the
+  scalloped tin trims on a rickshaw hood.
+*/
+.rickshaw-trim {
+  height: 14px;
+  background:
+    linear-gradient(135deg, var(--rose) 25%, transparent 25%) -7px 0 / 14px 14px,
+    linear-gradient(225deg, var(--rose) 25%, transparent 25%) -7px 0 / 14px 14px,
+    linear-gradient(315deg, var(--marigold) 25%, transparent 25%) 0 0 / 14px 14px,
+    linear-gradient(45deg, var(--marigold) 25%, transparent 25%) 0 0 / 14px 14px,
+    var(--bottle-deep);
+}
+
+.haat-panel {
+  background: var(--bottle-deep);
+}
+
+.graph-paper {
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--indigo) 14%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--indigo) 14%, transparent) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.ruled {
+  background-color: var(--surface);
+  background-image: linear-gradient(transparent 23px, var(--line) 23px, var(--line) 24px);
+  background-size: 100% 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
